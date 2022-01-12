@@ -1,0 +1,65 @@
+<div class="text-layout">
+    <h1>Pipes personalizados</h1>
+    <p>Pipes creados por {{ 'nosotros' | mayusculas:enMayuscula}}</p>
+
+ 
+</div>
+
+<p-toolbar>
+    <div class="p-toolbar-group-left">
+        <button pButton
+        label="toggle mayúsculas"
+        (click)=changeMayusculas()
+        class= 'mr-2 p-button-warning'>
+
+        </button>  
+        
+    </div>
+    
+    <div class="p-toolbar-group-right">
+        
+        <button pButton
+                icon="pi pi-sort"
+                label="Por nombre"
+                class= 'mr-2'
+                (click)="cambiarOrden('nombre')">
+        </button>
+        <button pButton
+                icon="pi pi-sort"
+                label="Vuela"
+                class= 'mr-2 p-button-success'
+                (click)="cambiarOrden('vuela')">
+        </button>
+       
+        <button pButton
+                icon="pi pi-sort"
+                label="Por Color"           
+                class= 'mr-2 p-button-help'
+                (click)="cambiarOrden('color')">
+    
+        </button>
+    </div>
+</p-toolbar>
+<div class="grid">
+    <div class="col mt-2">
+        <p-table [value]= "heroes |ordenar:ordenarPor">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Vuela</th>
+                    <th>Color</th>
+                   
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-hero>
+                <tr>
+                    <td>{{hero.nombre |titlecase}}</td>
+                    <td>{{hero.vuela | vuela |titlecase}}</td>
+                    <td>{{hero.color}}</td>
+                    
+                </tr>
+            </ng-template>
+        </p-table>
+        
+    </div>
+</div>
